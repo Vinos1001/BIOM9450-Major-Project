@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <!-- Header section with title and logo -->
+    <header>
+        <h1>
+            <img src="healthLogo.png" style="width:50px;height:50px;" alt="Health Logo"> Health CodeX Workshop 2024
+        </h1>
+    </header>
+
+    <!-- Navigation bar -->
+    
+    <section id = 'registrationForm'>
+        <h2>Workshop Registration</h2>
+        <!-- Registration form -->
+        <form id="registrantInfo" onsubmit="return validateForm()" method="GET" action="regSuccess.html">
+            <!--First Name -->
+            <div id="form-style">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" size="19" onChange="validateName(this, 'First name')"><br>
+                <span id="firstNameError" class="error"></span><br>
+            </div>
+            <!--Last Name -->
+            <div id="form-style">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" size="19" onChange="validateName(this, 'Last name')"><br>
+                <span id="lastNameError" class="error"></span><br>
+            </div>
+            <div id="form-style">
+            <!-- Date of Birth -->
+                <label for="dob">Date of Birth (dd/mm/yyyy):</label>
+                <input type="text" id="dob" name="dob" maxlength="10" size="19" onChange="validDateOfBirth(this)"><br>
+                <span id="dobError" class="error"></span><br>
+            </div>
+            <!-- Email Address -->
+            <div id="form-style">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" size="19" onChange="validateEmail(this)"><br>
+                <span id="emailError" class="error"></span><br>
+            </div>
+            <!-- Password -->
+            <div id="form-style">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" size="19" onChange="validatePassword()"><br>
+                <span id="passwordError" class="error"></span><br>
+            </div>
+            <!-- Confirm Password -->
+            <div id="form-style">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" size="19" onChange="validateConfirmPassword()"><br>
+                <span id="confirmPasswordError" class="error"></span><br>
+            </div>
+            <!-- Gender -->
+            <div id="form-style">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select><br><br>
+            </div>
+            <!-- Extra Marketing Check Box-->
+            <label><input type="checkbox" name="marketing" value="yes"> I would like to receive marketing material.</label><br><br>
+            <!-- Submit Button -->
+            <input type="submit" id="submit" value="Register now!">
+        </form>
+    </section>
+</body>
+    <!-- Vaildations-->
+<script>
+    function validateName(input, fieldName) {
+        const value = input.value;
+        const errorField = document.getElementById(input.id + 'Error');
+        const namePattern = /^[a-zA-Z\s'-]+$/;
+
+        if (!value.match(namePattern)) {
+            errorField.textContent = fieldName + " can only contain letters, spaces, apostrophes, and hyphens.";
+            return false;
+        } else {
+            errorField.textContent = "";
+            return true;
+        }
+    }
+
+    function validDateOfBirth(input) {
+        const dob = input.value;
+        const errorField = document.getElementById('dobError');
+        const dobPattern = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(1[0-9]{3}|20[0-9]{2})$/;
+
+        if (!dob.match(dobPattern)) {
+            errorField.textContent = "Please enter a valid date of birth in the format dd/mm/yyyy.";
+            return false;
+        } else {
+            const parts = dob.split("/");
+            const day = parseInt(parts[0], 10);
+            const month = parseInt(parts[1], 10);
+            const year = parseInt(parts[2], 10);
+            const today = new Date();
+            const birthDate = new Date(year, month - 1, day);
+
+            if (birthDate > today || year < 1900) {
+                errorField.textContent = "Please enter a realistic date of birth.";
+                return false;
+            } else {
+                errorField.textContent = "";
+                return true;
+            }
+        }
+    }
+
+    function validateEmail(input) {
+        const email = input.value;
+        const errorField = document.getElementById('emailError');
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+        if (!email.match(emailPattern)) {
+            errorField.textContent = "Please enter a valid email address.";
+            return false;
+        } else {
+            errorField.textContent = "";
+            return true;
+        }
+    }
+
+    function validatePassword() {
+        const password = document.getElementById('password').value;
+        const passwordError = document.getElementById('passwordError');
+
+        const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
+        if (!password.match(passwordPattern)) {
+            passwordError.textContent = "Password must be at least 8 characters long and include uppercase, lowercase, and numbers.";
+            validateConfirmPassword(); 
+            return false;
+        } else {
+            passwordError.textContent = "";
+            validateConfirmPassword(); 
+            return true;
+        }
+    }
+    function validateConfirmPassword() {
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const confirmPasswordError = document.getElementById('confirmPasswordError');
+
+        if (password !== confirmPassword) {
+            confirmPasswordError.textContent = "Passwords do not match.";
+            return false;
+        } else {
+            confirmPasswordError.textContent = "";
+            return true;
+        }
+    }
+
+    function validateForm() {
+        const firstNameValid = validateName(document.getElementById('firstName'), 'First name');
+        const lastNameValid =  validateName(document.getElementById('lastName'), 'Last name');
+        const dobValid = validDateOfBirth(document.getElementById('dob'));
+        const emailValid = validateEmail(document.getElementById('email'));
+        const passwordValid = validatePassword();
+        const confirmPasswordValid = validateConfirmPassword();
+
+
+        if (!firstNameValid || !lastNameValid || !dobValid || !emailValid || !passwordValid || !confirmPasswordValid) {
+            alert("Please correct the errors in the form before submitting.");
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<!-- Footer with contact information -->
+<footer id="contactInformation">
+    <h3>Contact Information</h3>
+    <p>Email: <a href="mailto:info@healthcodex.com">info@healthcodex.com</a></p>
+    <p>Phone: 0435 965 661</p>
+    <p>Address: <a href="https://www.google.com.au/maps/place/La+Sen+Vietnamese+Restaurant/@-33.9247104,151.22432,14z/data=!3m1!5s0x6b12b222f3104967:0xe819f3dc23cad3fe!4m6!3m5!1s0x6b12b222f25b4ba9:0x823b5f0168a4fbc6!8m2!3d-33.9195863!4d151.2427968!16s%2Fg%2F11b6y0y672?entry=ttu">35 Perouse Rd, Randwick NSW 2031</a></p>
+    <p>Website built by Vinoshan Parathan. <a href="#top">Back to top</a></p>
+</footer>
+
+
+</html>
