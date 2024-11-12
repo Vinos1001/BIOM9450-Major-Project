@@ -4,12 +4,12 @@ CREATE TABLE Patient
     PatientID INT PRIMARY KEY IDENTITY (1,1),
     Name VARCHAR(100) NOT NULL,
     DOB DATE NOT NULL,
-    Sex VARCHAR(10),
+    Sex VARCHAR(10) CHECK (SEX IN ('Male','Female')),
     PhoneNumber VARCHAR(15),
     Address VARCHAR(255),
     DiagnosticInformation TEXT,
     GeneticMutations TEXT
-)
+);
 
 CREATE TABLE Clinician
 (
@@ -19,7 +19,7 @@ CREATE TABLE Clinician
     Password VARCHAR(255) NOT NULL,
     Specialty VARCHAR(100),
     ContactInformation VARCHAR(100)
-)
+);
 
 CREATE TABLE Phenotypes
 (
@@ -29,7 +29,7 @@ CREATE TABLE Phenotypes
     DateRecorded DATE NOT NULL,
     FOREIGN KEY (PatientID) REFERENCES Patient(PatientID)
 
-)
+);
 
 CREATE TABLE Mutations
 (
@@ -39,7 +39,7 @@ CREATE TABLE Mutations
     ImpactOnHealth TEXT,
     PatientID INT NOT NULL,
     FOREIGN KEY (PatientID) REFERENCES Patient(PatientID)
-)
+);
 
 CREATE TABLE Diagnostics
 (
