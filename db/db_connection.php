@@ -1,14 +1,14 @@
 <?php
-// This file allows established connection to database and can be included wherever database access is needed
 // Database configuration
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "PatientManagementSystem";
+$host = 'localhost';
+$db = 'patient_management_system'; // Name of your database
+$user = 'root'; // Default XAMPP username
+$password = ''; // Default XAMPP password is empty
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Create a connection
+$conn = new mysqli($host, $user, $password, $db);
 
-// Check connection
+// Check the connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
