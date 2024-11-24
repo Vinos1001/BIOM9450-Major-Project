@@ -8,9 +8,13 @@ if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit();
 }
+$username = $_SESSION['username'];
 include('log_action.php');
 // Include database connection
 include '../db/db_connection.php'; // Adjust the path as needed
+
+
+echo "Welcome, you are successfully logged in as $username.";
 
 // Initialize variables to hold error/success messages
 $error = '';
@@ -92,11 +96,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <nav>
         <a href="dashboard.php">Dashboard</a>
+        &nbsp;
         <a href="logout.php">Logout</a>
     </nav>
     <br>
-
     <h1>Add Patient</h1>
+
 
     <!-- Display error or success messages -->
     <?php if (!empty($error)): ?>
@@ -131,19 +136,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <textarea id="diagnostics_info" name="diagnostics_info" required></textarea><br><br>
 
         <label for="genetic_mutations">Genetic Mutations:</label>
-        <textarea id="genetic_mutations" name="genetic_mutations" required></textarea><br><br>
+        <textarea id="genetic_mutations" name="genetic_mutations"></textarea><br><br>
 
         <label for="phenotype_description">Phenotype Description:</label>
-        <input type="text" id="phenotype_description" name="phenotype_description" required><br><br>
+        <input type="text" id="phenotype_description" name="phenotype_description"><br><br>
 
         <label for="phenotype_date">Phenotype Date (YYYY-MM-DD):</label>
-        <input type="date" id="phenotype_date" name="phenotype_date" required><br><br>
+        <input type="date" id="phenotype_date" name="phenotype_date"><br><br>
 
         <label for="mutation_gene">Mutation Gene:</label>
-        <input type="text" id="mutation_gene" name="mutation_gene" required><br><br>
+        <input type="text" id="mutation_gene" name="mutation_gene"><br><br>
 
         <label for="mutation_type">Mutation Type:</label>
-        <input type="text" id="mutation_type" name="mutation_type" required><br><br>
+        <input type="text" id="mutation_type" name="mutation_type"><br><br>
 
         <label for="impact_on_health">Impact on Health:</label>
         <textarea id="impact_on_health" name="impact_on_health" required></textarea><br><br>

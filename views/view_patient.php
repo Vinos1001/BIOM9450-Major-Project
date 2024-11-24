@@ -10,9 +10,11 @@ if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit();
 }
+$username = $_SESSION['username'];
 
 // Include the database connection file
 include('../db/db_connection.php');
+echo "Welcome, you are successfully logged in as $username.";
 
 // Get the PatientID from the URL
 $patient_id = $_GET['patient_id'];
@@ -75,13 +77,19 @@ log_action($conn, $clinician_id, $action, $patient_id, "Viewed details of patien
 
 <body>
     <!-- Include your menu -->
-    <?php include("include_menu.php"); ?>
-
+    <nav>
+        <a href="dashboard.php">Dashboard</a>
+        &nbsp;
+        <a href="logout.php">Logout</a>
+    </nav>
+    <br>
     <h1>Patient Details</h1>
 
     <!-- Patient profile image -->
     <img src='../assets/default.jpg' alt="Profile Image" class="profile-image">
-
+    <a href="edit_patient.php?patient_id=<?php echo $patient_id; ?>"><button type="button">Edit</button></a>
+    <a href="generate_patient_pdf.php?patient_id=<?php echo $patient_id; ?>"><button type="button">Save as
+            PDF</button></a>
     <h2>General Information</h2>
     <table>
         <tr>
@@ -167,11 +175,8 @@ log_action($conn, $clinician_id, $action, $patient_id, "Viewed details of patien
             </tr>
         <?php endwhile; ?>
     </table>
-
     <!-- Link back to Dashboard -->
-    <nav>
-        <a href="dashboard.php">Back to Dashboard</a>
-    </nav>
+
 </body>
 
 </html>

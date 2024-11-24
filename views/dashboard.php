@@ -16,7 +16,7 @@ $username = $_SESSION['username'];
 include('../db/db_connection.php');
 
 // Display a welcome message
-echo "Welcome: $username, you are successfully logged in!";
+echo "Welcome, you are successfully logged in as $username.";
 
 // Initialize search query
 $search_query = '';
@@ -79,17 +79,14 @@ $result = $conn->query($search_query);
 </head>
 
 <body>
-    <!-- Include your menu -->
-    <?php include("include_menu.php"); ?>
-
-    <h1>Patient List</h1>
 
     <nav>
-        <a href="login.php">Login</a>
-        <a href="register.php">Register</a>
+        <a href="add_patient.php">Add Patient</a>
+        &nbsp;
         <a href="logout.php">Logout</a>
     </nav>
-    <br>
+
+    <h1>Patient List</h1>
 
     <form method="POST" action="dashboard.php">
         <select name="search_criteria">
@@ -150,6 +147,12 @@ $result = $conn->query($search_query);
         ?>
 
     </table>
+
+    <!-- Add button to generate PDF -->
+    <a
+        href="generate_all_patients_pdf.php?search_criteria=<?php echo $search_criteria; ?>&search_value=<?php echo $search_value; ?>"><button
+            type="button">Save All as PDF</button></a>
+
 </body>
 
 </html>

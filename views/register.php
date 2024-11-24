@@ -161,6 +161,7 @@ $conn->close();
 <!-- Navigation Bar -->
 <nav>
     <a href="login.php">Login</a>
+    &nbsp;
     <a href="register.php">Register</a>
 </nav>
 <br>
