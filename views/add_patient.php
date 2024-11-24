@@ -1,55 +1,59 @@
 <?php
-// Start the session
-session_start();
+// Include database connection
+include '../db/db_connection.php'; // Adjust the path as needed
 
-// Check if the user is logged in
-if (!isset($_SESSION['username'])) {
-    header("Location: login.php");
-    exit();
-}
-
-// Include the database connection file
-include('../db/db_connection.php');
-
-// Initialize variables for error/success messages
+// Initialize variables to hold error/success messages
 $error = '';
 $success = '';
 
-// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Capture and sanitize form inputs
-    $name = htmlspecialchars($_POST['name']);
-    $dob = htmlspecialchars($_POST['dob']); // Ensure proper date format
-    $sex = htmlspecialchars($_POST['sex']);
-    $phone_number = htmlspecialchars($_POST['phone_number']);
-    $address = htmlspecialchars($_POST['address']);
-    $diagnostics_info = htmlspecialchars($_POST['diagnostics_info']);
-    $genetic_mutations = htmlspecialchars($_POST['genetic_mutations']);
+    // Collect data from the form
+    $name = $_POST['name'];
+    $dob = $_POST['dob'];
+    $sex = $_POST['sex'];
+    $phone_number = $_POST['phone_number'];
+    $address = $_POST['address'];
+    $diagnostics_info = $_POST['diagnostics_info'];
+    $genetic_mutations = $_POST['genetic_mutations'];
+    $phenotype_description = $_POST['phenotype_description'];
+    $phenotype_date = $_POST['phenotype_date'];
+    $mutation_gene = $_POST['mutation_gene'];
+    $mutation_type = $_POST['mutation_type'];
+    $impact_on_health = $_POST['impact_on_health'];
+    $diagnosis_type = $_POST['diagnosis_type'];
+    $date_of_diagnosis = $_POST['date_of_diagnosis'];
 
-    // Validate inputs (e.g., ensure no empty fields)
-    if (empty($name) || empty($dob) || empty($sex) || empty($phone_number) || empty($address) || empty($diagnostics_info) || empty($genetic_mutations)) {
-        $error = "All fields are required.";
+    // Insert data into the Patient table
+    $query = "INSERT INTO patient (Name, DOB, Sex, PhoneNumber, Address, DiagnosticInformation, GeneticMutations)
+              VALUES ('$name', '$dob', '$sex', '$phone_number', '$address', '$diagnostics_info', '$genetic_mutations')";
+
+    if (mysqli_query($conn, $query)) {
+        // Get the last inserted PatientID
+        $patient_id = mysqli_insert_id($conn);
+
+        // Insert data into the Phenotypes table
+        $query = "INSERT INTO phenotypes (Description, PatientID, DateRecorded)
+                  VALUES ('$phenotype_description', '$patient_id', '$phenotype_date')";
+        mysqli_query($conn, $query);
+
+        // Insert data into the Mutations table
+        $query = "INSERT INTO mutationvariants (GeneInvolved, MutationType, HealthImpact, PatientID)
+                  VALUES ('$mutation_gene', '$mutation_type', '$impact_on_health', '$patient_id')";
+        mysqli_query($conn, $query);
+
+        // Insert data into the Diagnostics table
+        $query = "INSERT INTO diagnostics (DiagnosisType, DateOfDiagnosis, PatientID)
+                  VALUES ('$diagnosis_type', '$date_of_diagnosis', '$patient_id')";
+        mysqli_query($conn, $query);
+
+        $success = "Patient added successfully!";
     } else {
-        // Insert data into the database
-        $query = "INSERT INTO patient (Name, DOB, Sex, PhoneNumber, Address, DiagnosticInformation, GeneticMutations) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($query);
-
-        if ($stmt) {
-            $stmt->bind_param("sssssss", $name, $dob, $sex, $phone_number, $address, $diagnostics_info, $genetic_mutations);
-            if ($stmt->execute()) {
-                $success = "Patient added successfully!";
-            } else {
-                $error = "Error adding patient: " . $conn->error;
-            }
-            $stmt->close();
-        } else {
-            $error = "Database query error: " . $conn->error;
-        }
+        $error = "Error: " . mysqli_error($conn);
     }
-}
 
-// Close the database connection
-$conn->close();
+    // Close the database connection
+    mysqli_close($conn);
+}
 ?>
 
 <!DOCTYPE html>
@@ -58,6 +62,12 @@ $conn->close();
 <head>
     <title>Add Patient</title>
 </head>
+
+<nav>
+
+    <a href="dashboard.php">Dashboard</a>
+</nav>
+<br>
 
 <body>
     <h1>Add Patient</h1>
@@ -97,7 +107,28 @@ $conn->close();
         <label for="genetic_mutations">Genetic Mutations:</label>
         <textarea id="genetic_mutations" name="genetic_mutations" required></textarea><br><br>
 
-        <button type="submit">Add Patient</button>
+        <label for="phenotype_description">Phenotype Description:</label>
+        <input type="text" id="phenotype_description" name="phenotype_description" required><br><br>
+
+        <label for="phenotype_date">Phenotype Date (YYYY-MM-DD):</label>
+        <input type="date" id="phenotype_date" name="phenotype_date" required><br><br>
+
+        <label for="mutation_gene">Mutation Gene:</label>
+        <input type="text" id="mutation_gene" name="mutation_gene" required><br><br>
+
+        <label for="mutation_type">Mutation Type:</label>
+        <input type="text" id="mutation_type" name="mutation_type" required><br><br>
+
+        <label for="impact_on_health">Impact on Health:</label>
+        <textarea id="impact_on_health" name="impact_on_health" required></textarea><br><br>
+
+        <label for="diagnosis_type">Diagnosis Type:</label>
+        <input type="text" id="diagnosis_type" name="diagnosis_type" required><br><br>
+
+        <label for="date_of_diagnosis">Date of Diagnosis (YYYY-MM-DD):</label>
+        <input type="date" id="date_of_diagnosis" name="date_of_diagnosis" required><br><br>
+
+        <button type="submit">Submit</button>
     </form>
 </body>
 

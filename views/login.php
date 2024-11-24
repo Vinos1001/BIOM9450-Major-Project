@@ -21,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = htmlspecialchars($_POST['name']);
     $password = htmlspecialchars($_POST['password']);
     echo "Name: " . $name . "<br>";
-    echo "Password: " . $password . "<br>";
 
     // Check if the clinician exists in the database
     $query = "SELECT * FROM Clinician WHERE Username = ?";
@@ -39,11 +38,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
 
-        // Check if the password matches
-        if ($password === $row['PasswordHash']) { // Use password_verify() if passwords are hashed
+        // Check if the password matches the hashed password
+        if (password_verify($password, $row['PasswordHash'])) { // Using password_verify for security
             // Start a session and store user information
             session_start();
-            $_SESSION['username'] = $row['Name'];
+            $_SESSION['username'] = $row['Username'];
             $_SESSION['clinician_id'] = $row['ClinicianID'];
 
             echo "Login successful. Redirecting to dashboard...<br>";
@@ -64,28 +63,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close();
 ?>
 
-
 <!DOCTYPE html>
 <html>
+<nav>
+    <a href="login.php">Login</a>
+    <a href="register.php">Register</a>
+
+</nav>
+<br>
+
+<head>
+    <b>Login</b>
+</head>
 
 <body>
-
-
     <form action="login.php" method="post">
         <table>
             <tr>
                 <td>Name:</td>
-                <td> <input type="text" name="name" /> </td>
+                <td> <input type="text" name="name" required /> </td>
             </tr>
             <tr>
                 <td>Password:</td>
-                <td> <input type="password" name="password" /> </td>
+                <td> <input type="password" name="password" required /> </td>
             </tr>
             <tr>
-                <td colspan="2"> <input type="submit" value="login" /></td>
+                <td colspan="2"> <input type="submit" value="Login" /></td>
             </tr>
         </table>
-
     </form>
 </body>
 
