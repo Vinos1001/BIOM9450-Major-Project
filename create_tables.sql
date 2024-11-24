@@ -1,5 +1,5 @@
 CREATE TABLE Patient (
-    PatientID INT PRIMARY KEY IDENTITY (1, 1),
+    PatientID INT PRIMARY KEY AUTO_INCREMENT,
     Name VARCHAR(100) NOT NULL,
     DOB DATE NOT NULL,
     Sex VARCHAR(10) CHECK (SEX IN ('Male', 'Female', 'Other')),
@@ -9,7 +9,7 @@ CREATE TABLE Patient (
     GeneticMutations TEXT
 );
 CREATE TABLE Clinician (
-    ClinicianID INT PRIMARY KEY IDENTITY(1, 1),
+    ClinicianID INT PRIMARY KEY AUTO_INCREMENT,
     Name VARCHAR(100) NOT NULL,
     Username VARCHAR(50) UNIQUE NOT NULL,
     Password VARCHAR(255) NOT NULL,
@@ -17,14 +17,14 @@ CREATE TABLE Clinician (
     ContactInformation VARCHAR(100)
 );
 CREATE TABLE Phenotypes (
-    PhenotypeID INT PRIMARY KEY IDENTITY(1, 1),
+    PhenotypeID INT PRIMARY KEY AUTO_INCREMENT,
     Description VARCHAR(255) NOT NULL,
     PatientID INT NOT NULL,
     DateRecorded DATE NOT NULL,
     FOREIGN KEY (PatientID) REFERENCES Patient(PatientID)
 );
 CREATE TABLE Mutations (
-    MutationID INT PRIMARY KEY IDENTITY(1, 1),
+    MutationID INT PRIMARY KEY AUTO_INCREMENT,
     GeneInvolved VARCHAR(100) NOT NULL,
     MutationType VARCHAR(100) NOT NULL,
     ImpactOnHealth TEXT,
@@ -32,9 +32,19 @@ CREATE TABLE Mutations (
     FOREIGN KEY (PatientID) REFERENCES Patient(PatientID)
 );
 CREATE TABLE Diagnostics (
-    DiagnosisID INT PRIMARY KEY IDENTITY(1, 1),
+    DiagnosisID INT PRIMARY KEY AUTO_INCREMENT,
     DiagnosisType VARCHAR(100) NOT NULL,
     DateOfDiagnosis DATE NOT NULL,
     PatientID INT NOT NULL,
+    FOREIGN KEY (PatientID) REFERENCES Patient(PatientID)
+);
+CREATE TABLE AuditLog (
+    LogID INT PRIMARY KEY AUTO_INCREMENT,
+    ClinicianID INT NOT NULL,
+    Action VARCHAR(255) NOT NULL,
+    ActionTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PatientID INT DEFAULT NULL,
+    Description TEXT,
+    FOREIGN KEY (ClinicianID) REFERENCES Clinician(ClinicianID),
     FOREIGN KEY (PatientID) REFERENCES Patient(PatientID)
 );

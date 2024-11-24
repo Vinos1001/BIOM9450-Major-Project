@@ -10,13 +10,13 @@ if (!isset($_SESSION['username'])) {
 }
 
 // Retrieve session data
-$name = $_SESSION['username'];
+$username = $_SESSION['username'];
 
 // Include the database connection file
 include('../db/db_connection.php');
 
 // Display a welcome message
-echo "Welcome: $name, you are successfully logged in!";
+echo "Welcome: $username, you are successfully logged in!";
 
 // Initialize search query
 $search_query = '';
@@ -29,20 +29,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search_value'])) {
 
     // Build search query based on the search criteria
     if ($search_criteria == 'name') {
-        $search_query = "SELECT * FROM patient WHERE Name LIKE '%$search_value%'";
+        $search_query = "SELECT * FROM Patient WHERE Name LIKE '%$search_value%'";
     } elseif ($search_criteria == 'dob') {
-        $search_query = "SELECT * FROM patient WHERE DOB LIKE '%$search_value%'";
+        $search_query = "SELECT * FROM Patient WHERE DOB LIKE '%$search_value%'";
     } elseif ($search_criteria == 'sex') {
-        $search_query = "SELECT * FROM patient WHERE Sex LIKE '%$search_value%'";
+        $search_query = "SELECT * FROM Patient WHERE Sex LIKE '%$search_value%'";
     } elseif ($search_criteria == 'phone_number') {
-        $search_query = "SELECT * FROM patient WHERE PhoneNumber LIKE '%$search_value%'";
+        $search_query = "SELECT * FROM Patient WHERE PhoneNumber LIKE '%$search_value%'";
     } elseif ($search_criteria == 'diagnostic_info') {
-        $search_query = "SELECT * FROM patient WHERE DiagnosticInformation LIKE '%$search_value%'";
+        $search_query = "SELECT * FROM Patient WHERE DiagnosticInformation LIKE '%$search_value%'";
     } elseif ($search_criteria == 'genetic_mutations') {
-        $search_query = "SELECT * FROM patient WHERE GeneticMutations LIKE '%$search_value%'";
+        $search_query = "SELECT * FROM Patient WHERE GeneticMutations LIKE '%$search_value%'";
     }
 } else {
-    $search_query = "SELECT * FROM patient"; // Default: show all patients
+    $search_query = "SELECT * FROM Patient"; // Default: show all patients
 }
 
 $result = $conn->query($search_query);
@@ -87,6 +87,7 @@ $result = $conn->query($search_query);
     <nav>
         <a href="login.php">Login</a>
         <a href="register.php">Register</a>
+        <a href="logout.php">Logout</a>
     </nav>
     <br>
 

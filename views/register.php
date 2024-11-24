@@ -19,42 +19,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Sanitize and capture form inputs
     $name = htmlspecialchars($_POST['name']);
+    $username = htmlspecialchars($_POST['username']);
     $password = htmlspecialchars($_POST['password']);
     $confirm_password = htmlspecialchars($_POST['confirm_password']);
     $specialty = htmlspecialchars($_POST['specialty']);  // Capture the specialty input
 
     echo "Name: " . $name . "<br>";
+    echo "Username: " . $username . "<br>";
     echo "Specialty: " . $specialty . "<br>";
 
     // Check if passwords match
     if ($password !== $confirm_password) {
         echo "<p style='color: red;'>Passwords do not match.</p>";
     } else {
-        // Hash the password for security
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        // Check for duplicate Name or Username
+        $duplicate_query = "SELECT * FROM Clinician WHERE Name = ? OR Username = ?";
+        $stmt = $conn->prepare($duplicate_query);
+        $stmt->bind_param("ss", $name, $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        // Prepare the SQL query to insert a new clinician
-        $query = "INSERT INTO Clinician (Username, PasswordHash, Specialty) VALUES (?, ?, ?)";
-        $stmt = $conn->prepare($query);
-
-        if ($stmt === false) {
-            die("MySQL prepare error: " . $conn->error);
-        }
-
-        // Bind the parameters to the query
-        $stmt->bind_param("sss", $name, $hashed_password, $specialty);  // Bind specialty as well
-
-        // Execute the query
-        if ($stmt->execute()) {
-            echo "<p style='color: green;'>Registration successful. Redirecting to login page...</p>";
-            header("Location: login.php"); // Redirect to the login page
-            exit();
+        if ($result->num_rows > 0) {
+            echo "<p style='color: red;'>Name or Username already exists. Please choose different information.</p>";
         } else {
-            echo "<p style='color: red;'>Error: " . $stmt->error . "</p>";
-        }
+            // Hash the password for security
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        // Close the statement
-        $stmt->close();
+            // Prepare the SQL query to insert a new clinician
+            $query = "INSERT INTO Clinician (Name, Username, Password, Specialty) VALUES (?, ?, ?, ?)";
+            $stmt = $conn->prepare($query);
+
+            if ($stmt === false) {
+                die("MySQL prepare error: " . $conn->error);
+            }
+
+            // Bind the parameters to the query
+            $stmt->bind_param("ssss", $name, $username, $hashed_password, $specialty);  // Bind specialty as well
+
+            // Execute the query
+            if ($stmt->execute()) {
+                echo "<p style='color: green;'>Registration successful. Redirecting to login page...</p>";
+                header("Location: login.php"); // Redirect to the login page
+                exit();
+            } else {
+                echo "<p style='color: red;'>Error: " . $stmt->error . "</p>";
+            }
+
+            // Close the statement
+            $stmt->close();
+        }
     }
 }
 
@@ -131,11 +144,12 @@ $conn->close();
         // Validate the entire form
         function validateForm() {
             const nameValid = validateName(document.getElementById('name'));
+            const usernameValid = validateName(document.getElementById('username'));
             const passwordValid = validatePassword();
             const confirmPasswordValid = validateConfirmPassword();
             const specialtyValid = validateSpecialty();
 
-            if (!nameValid || !passwordValid || !confirmPasswordValid || !specialtyValid) {
+            if (!nameValid || !usernameValid || !passwordValid || !confirmPasswordValid || !specialtyValid) {
                 alert("Please correct the errors in the form before submitting.");
                 return false;
             }
@@ -143,11 +157,11 @@ $conn->close();
         }
     </script>
 </head>
+
 <!-- Navigation Bar -->
 <nav>
     <a href="login.php">Login</a>
     <a href="register.php">Register</a>
-
 </nav>
 <br>
 
@@ -163,6 +177,13 @@ $conn->close();
                 <td>
                     <input type="text" id="name" name="name" oninput="validateName(this)" required />
                     <span id="nameError" style="color: red;"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Username:</td>
+                <td>
+                    <input type="text" id="username" name="username" oninput="validateName(this)" required />
+                    <span id="usernameError" style="color: red;"></span>
                 </td>
             </tr>
             <tr>

@@ -18,9 +18,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "Form submitted.<br>";
 
     // Sanitize and capture form inputs
-    $name = htmlspecialchars($_POST['name']);
+    $username = htmlspecialchars($_POST['username']);
     $password = htmlspecialchars($_POST['password']);
-    echo "Name: " . $name . "<br>";
+    echo "Username: " . $username . "<br>";
 
     // Check if the clinician exists in the database
     $query = "SELECT * FROM Clinician WHERE Username = ?";
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Bind the username to the query
-    $stmt->bind_param("s", $name);
+    $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
 
         // Check if the password matches the hashed password
-        if (password_verify($password, $row['PasswordHash'])) { // Using password_verify for security
+        if (password_verify($password, $row['Password'])) { // Using password_verify for security
             // Start a session and store user information
             session_start();
             $_SESSION['username'] = $row['Username'];
@@ -68,7 +68,6 @@ $conn->close();
 <nav>
     <a href="login.php">Login</a>
     <a href="register.php">Register</a>
-
 </nav>
 <br>
 
@@ -80,8 +79,8 @@ $conn->close();
     <form action="login.php" method="post">
         <table>
             <tr>
-                <td>Name:</td>
-                <td> <input type="text" name="name" required /> </td>
+                <td>Username:</td>
+                <td> <input type="text" name="username" required /> </td>
             </tr>
             <tr>
                 <td>Password:</td>
