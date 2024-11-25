@@ -53,16 +53,20 @@ $conn->close();
 ?>
 
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Patient</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 
 <body>
-    <h1>Add Patient</h1>
+    <?php include("../includes/header.php"); ?>
+    <h1 style="text-align: center;">Add Patient</h1>
 
     <!-- Display error or success messages -->
+    <div class="container">
     <?php if (!empty($error)): ?>
         <p style="color: red;"><?php echo $error; ?></p>
     <?php endif; ?>
@@ -71,34 +75,36 @@ $conn->close();
     <?php endif; ?>
 
     <!-- Patient form -->
+    <section> 
     <form action="add_patient.php" method="post">
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
+        <input type="text" id="name" name="name" required>
 
         <label for="dob">Date of Birth (YYYY-MM-DD):</label>
-        <input type="date" id="dob" name="dob" required><br><br>
+        <input type="date" id="dob" name="dob" required>
 
         <label for="sex">Sex:</label>
         <select id="sex" name="sex" required>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
             <option value="Other">Other</option>
-        </select><br><br>
+        </select>
 
         <label for="phone_number">Phone Number:</label>
-        <input type="text" id="phone_number" name="phone_number" required><br><br>
+        <input type="text" id="phone_number" name="phone_number" required>
 
         <label for="address">Address:</label>
-        <textarea id="address" name="address" required></textarea><br><br>
+        <textarea id="address" name="address" required></textarea>
 
         <label for="diagnostics_info">Diagnostics Info:</label>
-        <textarea id="diagnostics_info" name="diagnostics_info" required></textarea><br><br>
+        <textarea id="diagnostics_info" name="diagnostics_info" required></textarea>
 
         <label for="genetic_mutations">Genetic Mutations:</label>
-        <textarea id="genetic_mutations" name="genetic_mutations" required></textarea><br><br>
+        <textarea id="genetic_mutations" name="genetic_mutations" required></textarea>
 
         <button type="submit">Add Patient</button>
     </form>
+    </section> 
 </body>
 
 </html>

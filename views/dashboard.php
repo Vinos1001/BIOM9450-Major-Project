@@ -12,16 +12,28 @@ if (!isset($_SESSION['username'])) {
 // Retrieve session data
 $name = $_SESSION['username'];
 
-// Display a welcome message
-echo "Welcome: $name, you are successfully logged in!";
 ?>
 
+
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
 <body>
-    <!-- Include your menu -->
-    <?php include("include_menu.php"); ?>
+    <!-- Include the navigation menu -->
+    <?php include("../includes/header.php"); ?>
+    <div class="container">
+        <div class="welcome-box">
+            <h1>Welcome to the Dashboard!</h1>
+            <p>Hi <strong><?php echo htmlspecialchars($name); ?></strong>, you are successfully logged in!</p>
+            <p>Use the navigation menu to explore the features of the system.</p>
+        </div>
+    </div>
+    <?php include("../includes/footer.php"); ?>
 </body>
-
 </html>
+

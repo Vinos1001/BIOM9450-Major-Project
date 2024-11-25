@@ -67,10 +67,12 @@ $conn->close();
 
 <!DOCTYPE html>
 <html>
-
+<head>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
 <body>
 
-
+    <section>
     <form action="login.php" method="post">
         <table>
             <tr>
@@ -87,6 +89,7 @@ $conn->close();
         </table>
 
     </form>
+    </section>
 </body>
 
 </html>

@@ -1,16 +1,203 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Trebuchet MS', sans-serif;
+    background-image: linear-gradient(to bottom right, #a6ddba,#97b4da,#6f7fc4); /* Ombre effect */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+header {
+    background-color: hsl(155, 59%, 40%);
+    color: white;
+    padding: 30px;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 46px; 
+    letter-spacing: 1px;
+    text-align: center;
 }
 
+header img {
+    vertical-align: middle;
+}
+
+header h1 {
+    display: inline;
+    margin-left: 15px;
+    font-size: 35px;
+}
+
+section {
+    margin: 30px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2, h3 {
+    color: #4caf7f;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table, th, td {
+    border: 1px solid #c2d2c2;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+a {
+    color: #4c7daf;
+    text-decoration: none;
+}
+
+
 form {
-    max-width: 300px;
-    margin: auto;
-    padding: 1em;
+    display: grid;
+    grid-gap: 10px;
+    max-width: 400px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    margin: 0 auto;
 }
 
 label {
-    display: block;
-    margin-top: 1em;
+    margin-bottom: 5px;
 }
+
+input[type="text"], input[type="email"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+input[type="submit"] {
+    background-color: #4caf7f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+input[type="submit"]:hover {
+    background-color: #4c7daf;
+}
+
+
+
+/* Container Styles */
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+/* Welcome Box */
+.welcome-box {
+    text-align: center;
+    padding: 20px;
+}
+
+.welcome-box h1 {
+    font-size: 28px;
+    color: #5bc4ab;
+    margin-bottom: 10px;
+}
+
+.welcome-box p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Navigation Menu */
+nav {
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    height: 50px;
+}
+
+.nav-header {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+    line-height: 50px;
+}
+
+.footer { 
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    font-size: 14px;
+    z-index: 10;
+    width: 100%;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.1)
+}
+
+.footer a {
+    color: #c5e9f9; 
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.navbar-last {
+    margin-left: auto;
+}
+
+.navbar-button {
+    height: 100%;
+}
+
+.navbar-button:hover {
+    background-color: rgba(0, 0, 0, 0.158);
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+    .container {
+        width: 90%;
+        padding: 10px;
+    }
+}
+
+
+
+
