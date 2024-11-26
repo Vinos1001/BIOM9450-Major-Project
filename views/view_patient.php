@@ -14,7 +14,7 @@ $username = $_SESSION['username'];
 
 // Include the database connection file
 include('../db/db_connection.php');
-echo "Welcome, you are successfully logged in as $username.";
+//echo "Welcome, you are successfully logged in as $username.";
 
 // Get the PatientID from the URL
 $patient_id = $_GET['patient_id'];
@@ -47,49 +47,26 @@ log_action($conn, $clinician_id, $action, $patient_id, "Viewed details of patien
 <html>
 
 <head>
+    <link rel="stylesheet" href="/assets/css/view_patient.css">
     <title>Patient Details</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table,
-        th,
-        td {
-            border: 1px solid black;
-        }
-
-        th,
-        td {
-            padding: 8px;
-            text-align: left;
-        }
-
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-    </style>
 </head>
 
 <body>
-    <!-- Include your menu -->
-    <nav>
-        <a href="dashboard.php">Dashboard</a>
-        &nbsp;
-        <a href="logout.php">Logout</a>
-    </nav>
+    <?php include("../includes/header.php"); ?>
+
     <br>
     <h1>Patient Details</h1>
 
     <!-- Patient profile image -->
     <img src='../assets/default.jpg' alt="Profile Image" class="profile-image">
-    <a href="edit_patient.php?patient_id=<?php echo $patient_id; ?>"><button type="button">Edit</button></a>
-    <a href="generate_patient_pdf.php?patient_id=<?php echo $patient_id; ?>"><button type="button">Save as
-            PDF</button></a>
+    <a href="edit_patient.php?patient_id=<?php echo $patient_id; ?>" style="text-decoration: none;">
+    <button type="button">Edit</button>
+    </a>
+    <a href="generate_patient_pdf.php?patient_id=<?php echo $patient_id; ?>" style="text-decoration: none;">
+        <button type="button">Save as PDF</button>
+    </a>
+
+    <form>
     <h2>General Information</h2>
     <table>
         <tr>
@@ -176,8 +153,10 @@ log_action($conn, $clinician_id, $action, $patient_id, "Viewed details of patien
         <?php endwhile; ?>
     </table>
     <!-- Link back to Dashboard -->
-
+    </form>
 </body>
+
+<?php include("../includes/footer.php"); ?>
 
 </html>
 

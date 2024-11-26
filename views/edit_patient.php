@@ -16,7 +16,7 @@ include('log_action.php');
 
 // Include database connection
 include '../db/db_connection.php'; // Adjust the path as needed
-echo "Welcome, you are successfully logged in as $username.";
+//echo "Welcome, you are successfully logged in as $username.";
 
 // Get the PatientID from the URL
 $patient_id = $_GET['patient_id'];
@@ -162,6 +162,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 
 <head>
+    <link rel="stylesheet" href="/assets/css/add_patient.css">
+    <br><br>
     <title>Edit Patient</title>
     <script>
         function addPhenotype() {
@@ -322,5 +324,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit">Submit</button>
     </form>
 </body>
+<?php include("../includes/footer.php"); ?>
 
 </html>

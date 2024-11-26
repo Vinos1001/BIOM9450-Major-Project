@@ -92,13 +92,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <link rel="stylesheet" href="/assets/css/add_patient.css">
     <title>Add Patient</title>
-    <?php include("../includes/header.php"); ?>
 </head>
 
 <body>
+    <?php include("../includes/header.php"); ?>
+
     <br><br><br>
     <h1>Add Patient</h1>
-
 
     <!-- Display error or success messages -->
     <?php if (!empty($error)): ?>

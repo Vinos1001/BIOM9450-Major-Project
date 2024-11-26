@@ -4,7 +4,7 @@ body{
     display: flex;
     flex-direction: column;
     min-height: 100vh; /* Ensures the body takes up the full viewport height */
-    margin-top: 100px;
+    margin-top: 30px;
     padding-bottom: 0px;
     justify-content: center;
     align-items: center;
@@ -33,7 +33,7 @@ label{
     font-size: 2.3em;
     justify-content: center;
     display: flex;
-    margin: 60px;
+    margin: 10px;
     font-weight: bold;
     cursor: pointer;
     transition: .5s ease-in-out;
@@ -99,16 +99,25 @@ button:hover{
 }
 
 .footer { 
-    position: relative;
+    position: relative bottom; 
+    color: white;
+    bottom: 0; 
+    left: 0; 
     font-size: 14px;
     z-index: 10;
     width: 100%;
     text-align: center;
-    background: rgba(0, 0, 0, 0.1);
-    padding: 10px 0;
-    margin-top: auto; /* Ensures the footer stays at the bottom */
+    height: 80px;
+    padding-top: 10px;
 }
 
-footer-container {
+.footer a {
+    color: #c5e9f9; 
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
 
+.footer a:hover {
+    color: #ffffff;
+    text-decoration: underline;
 }

@@ -51,12 +51,6 @@ th {
     background-color: #cfd7e8;
 }
 
-footer {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    text-align: center;
-}
 
 a {
     color: #4c7daf;
@@ -65,10 +59,9 @@ a {
 
 
 form {
-    display: grid;
+    display:flex;
     grid-gap: 10px;
     max-width: 400px;
-    border: 1px solid #ccc;
     margin: 0 auto;
 }
 
@@ -116,7 +109,7 @@ input[type="submit"]:hover {
 }
 .form-container {
     max-width: 80%;
-    margin: 50px auto;
+    margin: auto;
     padding: 20px;
     background: #02000016;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -198,21 +191,24 @@ nav a {
     margin-left: 60%; /* This pushes the "Logged in as" section to the right */
     text-align: right; /* Optional: aligns the text to the right */
 }
+
 .footer { 
-    position: static bottom; 
+    position: absolute bottom; 
+    color: white;
     bottom: 0; 
     left: 0; 
     font-size: 14px;
     z-index: 10;
     width: 100%;
     text-align: center;
-    background: rgba(0, 0, 0, 0.1)
+    background: rgba(0, 0, 0, 0.1);
+    height: 80px;
+    padding-top: 10px;
 }
 
 .footer a {
     color: #c5e9f9; 
     text-decoration: none;
-    font-weight: bold;
     transition: color 0.3s ease;
 }
 
@@ -220,18 +216,6 @@ nav a {
     color: #ffffff;
     text-decoration: underline;
 }
-
-
-/* Responsive Design */
-@media screen and (max-width: 600px) {
-    .container {
-        width: 90%;
-        padding: 10px;
-    }
-}
-
-
-
 
 
 
