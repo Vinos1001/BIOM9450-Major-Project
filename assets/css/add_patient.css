@@ -1,0 +1,198 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+    color: #333; /* Text color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+    background: linear-gradient(to bottom, #6f7fc4,#97b4da,#a6ddba);
+}
+
+/* Heading */
+h1 {
+    color: #ffffff; 
+    font-size: 30px; 
+    text-align: center;
+    margin: 20px 0; 
+    font-weight: bold; 
+}
+/* Form container */
+form {
+    background: #00000015;
+    padding: 60px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(9, 4, 4, 0.1);
+    width: 100%;
+    max-width: 650px;
+    margin-bottom:100px;
+
+}
+
+/* Form labels */
+label {
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    color: white;
+    margin-bottom: 8px;
+}
+
+/* Form inputs and textareas */
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #ffffff65;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Focus state for inputs */
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #4A90E2;
+    outline: none;
+    box-shadow: 0 0 4px rgba(74, 144, 226, 0.3);
+}
+
+/* Textarea specific styling */
+textarea {
+    height: 32px;
+}
+
+/* Error and success messages */
+p {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+/* Submit button */
+button {
+    width: 60%;
+    height: 40px;
+    margin: 10px auto;
+    justify-content: center;
+    display: block;
+    color: #3f5a75;
+    background: white;
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 20px;
+    outline: none;
+    border: none;
+    border-radius: 50px;
+    transition: .2s ease-in;
+    cursor: pointer;
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: #3f5a75;
+    color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    form {
+        padding: 15px;
+        width: 100%;
+    }
+
+    button {
+        padding: 14px;
+    }
+}
+/* Ensure the navbar spans the full width of the screen */
+nav {
+    width: 100%; /* Make the navbar take full width */
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    height: 50px;
+    position: fixed; /* Fix it to the top of the page */
+    top: 0;
+    left: 0;
+    z-index: 10; /* Ensure it sits on top of other content */
+}
+
+/* Navbar layout and items */
+.nav-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center; /* Center the content vertically */
+    height: 50px; /* Ensures the navbar takes up the full height */
+    padding: 0 15px; /* Optional padding for better alignment */
+}
+
+/* Navbar links */
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+    line-height: 50px;
+}
+
+/* Aligning the last navbar button (e.g., "Logout" or other buttons) */
+.navbar-last {
+    margin-left: auto; /* Push the last button to the right */
+}
+
+/* Navbar button */
+.navbar-button {
+    height: 100%;
+}
+
+/* Hover effect on navbar buttons */
+.navbar-button:hover {
+    background-color: rgba(0, 0, 0, 0.158);
+    cursor: pointer;
+}
+
+.footer { 
+    position: static bottom; 
+    
+    color: white;
+    bottom: 0; 
+    left: 0; 
+    font-size: 14px;
+    width: fit-content;
+    text-align: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center; /* Center the content vertically */
+    height: 50px; /* Ensures the navbar takes up the full height */
+    padding: 0 15px; /* Optional padding for better alignment */
+}
+
+.footer a {
+    color: #c5e9f9; 
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}

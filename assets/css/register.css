@@ -1,0 +1,111 @@
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Jost', sans-serif;
+    font-size: auto;
+    background: linear-gradient(to bottom, #a6ddba,#97b4da,#6f7fc4);
+}
+
+.main{
+    width: 30%;
+    overflow: hidden;
+    background: #00000010;
+    border-radius: 10px;
+    box-shadow: 5px 5px 50px #000000a5;
+    padding: 20px;
+}
+#chk{
+    display: none;
+}
+
+.registerBox {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content:space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-row p {
+    text-align: right;
+    padding-right: 40px;
+    flex: 1;
+}
+
+.form-error {
+    height: 5px;
+    font-size: 10px;
+    color: white;
+    text-align: right;
+}
+
+input{
+    width: 35%;
+    height: 10px;
+    background: #ffffffc0;
+    justify-content: center;
+    display: flex;
+    padding: 10px;
+    margin-right:40px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+button{
+    width: 60%;
+    height: 40px;
+    margin: 10px auto;
+    justify-content: center;
+    display: block;
+    color: #325b8f;
+    background: white;
+    font-size: 1em;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    border-radius: 50px;
+    transition: .2s ease-in;
+    cursor: pointer;
+}
+button:hover{
+    background: #79d1ac;
+}
+
+.login-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-header h1 {
+    margin: 10px;
+    margin-left: 15%;
+    font-size: 2em;
+    align-items: right;
+    font-weight: bold;
+}
+
+.login-forgot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+    
+p {
+    color: white; 
+    font-size: 20px; 
+    text-align: left; 
+}
