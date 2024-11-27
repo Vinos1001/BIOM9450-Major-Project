@@ -51,25 +51,28 @@ $result = $conn->query($search_query);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Page</title>
-    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
+
 <body>
     <?php include("../includes/header.php"); ?>
 
     <div class="container">
         <div class="welcome-box">
             <h1>Welcome to the Dashboard!</h1>
-            <p>Hi <strong><?php echo htmlspecialchars($username); ?></strong>, use the below table to search or add patient data!</p>
+            <p>Hi <strong><?php echo htmlspecialchars($username); ?></strong>, use the below table to search or add
+                patient data!</p>
         </div>
     </div>
 
-    
 
-<!-- Filter Box -->
+
+    <!-- Filter Box -->
     <div class="form-container">
         <h2>Filter Fields</h2>
         <form method="POST" action="dashboard.php">
@@ -81,7 +84,8 @@ $result = $conn->query($search_query);
                 <option value="sex" <?php if ($search_criteadria == 'sex')
                     echo 'selected'; ?>>Sex</option>
                 <option value="phone_number" <?php if ($search_criteria == 'phone_number')
-                    echo 'selected'; ?>>Phone Number
+                    echo 'selected'; ?>>Phone
+                    Number
                 </option>
                 <option value="diagnostic_info" <?php if ($search_criteria == 'diagnostic_info')
                     echo 'selected'; ?>>
@@ -90,23 +94,24 @@ $result = $conn->query($search_query);
                     echo 'selected'; ?>>
                     Genetic Mutations</option>
             </select>
-            <input type="text" name="search_value" value="<?php echo $search_value; ?>" placeholder="Search..." required />
+            <input type="text" name="search_value" value="<?php echo $search_value; ?>" placeholder="Search..."
+                required />
             <input type="submit" value="Search" />
             <!-- Reset Button -->
             <a href="dashboard.php"><button type="button" class="reset-btn">Reset Filter</button></a>
             <!-- Add button to generate PDF -->
-            <a href="generate_all_patients_pdf.php?search_criteria=<?php echo $search_criteria; ?>&search_value=<?php echo $search_value; ?>">
-                <button
-                type="button">Save All as PDF
+            <a
+                href="generate_all_patients_pdf.php?search_criteria=<?php echo $search_criteria; ?>&search_value=<?php echo $search_value; ?>">
+                <button type="button">Save All as PDF
                 </button>
             </a>
             <div class="button-container">
-            <button>
-                <a href="add_patient.php" style="color:#4caf7f;">Add Patient</a>
-                &nbsp;
-            </button>
+                <button>
+                    <a href="add_patient.php" style="color:#4caf7f;">Add Patient</a>
+                    &nbsp;
+                </button>
         </form>
-    </div>        
+    </div>
     </div>
 
 
@@ -148,10 +153,11 @@ $result = $conn->query($search_query);
 
         </table>
     </div>
-    
+
     <?php include("../includes/footer.php"); ?>
 
 </body>
+
 </html>
 
 <?php

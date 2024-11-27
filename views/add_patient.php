@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 
 <head>
-    <link rel="stylesheet" href="/assets/css/add_patient.css">
+    <link rel="stylesheet" href="../assets/css/add_patient.css">
     <title>Add Patient</title>
 </head>
 

@@ -68,7 +68,7 @@ $conn->close();
 <html>
 
 <head>
-    <link rel="stylesheet" href="/assets/css/login.css">
+    <link rel="stylesheet" href="../assets/css/login.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
 </head>
 
@@ -83,15 +83,18 @@ $conn->close();
 
                 <br><br><br><br>
                 <div class="login-header">
-                    <h1 for="chk" aria-hidden="true" style="color: white; font-size: 2.5em; font-weight: bold;">Login</h1>
-                    <img src="/includes/Logo.png" style="width: 62px; height: 50px; margin-right: 10px;"> <!-- Logo -->
+                    <h1 for="chk" aria-hidden="true" style="color: white; font-size: 2.5em; font-weight: bold;">Login
+                    </h1>
+                    <img src="../includes/Logo.png" style="width: 62px; height: 50px; margin-right: 10px;">
+                    <!-- Logo -->
                 </div>
-                
+
                 <input type="text" name="username" placeholder="Username" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <button type="submit">Login</button>
                 <br><br>
-                <a href="register.php" style="display: block; padding-left: 112px; color: white; size:2px;">Forgot password?</a>
+                <a href="register.php" style="display: block; padding-left: 112px; color: white; size:2px;">Forgot
+                    password?</a>
             </form>
         </div>
 
@@ -102,10 +105,12 @@ $conn->close();
             </a>
         </div>
 
-    
+
     </div>
 </body>
+
 <body>
     <?php include("../includes/footer.php"); ?>
 </body>
+
 </html>

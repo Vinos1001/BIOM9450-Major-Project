@@ -60,99 +60,99 @@ log_action($conn, $clinician_id, $action, $patient_id, "Viewed details of patien
     <!-- Patient profile image -->
     <img src='../assets/default.jpg' alt="Profile Image" class="profile-image">
     <a href="edit_patient.php?patient_id=<?php echo $patient_id; ?>" style="text-decoration: none;">
-    <button type="button">Edit</button>
+        <button type="button">Edit</button>
     </a>
     <a href="generate_patient_pdf.php?patient_id=<?php echo $patient_id; ?>" style="text-decoration: none;">
         <button type="button">Save as PDF</button>
     </a>
 
     <form>
-    <h2>General Information</h2>
-    <table>
-        <tr>
-            <th>Patient ID</th>
-            <td><?php echo $patient['PatientID']; ?></td>
-        </tr>
-        <tr>
-            <th>Name</th>
-            <td><?php echo $patient['Name']; ?></td>
-        </tr>
-        <tr>
-            <th>Date of Birth</th>
-            <td><?php echo $patient['DOB']; ?></td>
-        </tr>
-        <tr>
-            <th>Sex</th>
-            <td><?php echo $patient['Sex']; ?></td>
-        </tr>
-        <tr>
-            <th>Phone Number</th>
-            <td><?php echo $patient['PhoneNumber']; ?></td>
-        </tr>
-        <tr>
-            <th>Address</th>
-            <td><?php echo $patient['Address']; ?></td>
-        </tr>
-        <tr>
-            <th>Diagnostic Information</th>
-            <td><?php echo $patient['DiagnosticInformation']; ?></td>
-        </tr>
-        <tr>
-            <th>Genetic Mutations</th>
-            <td><?php echo $patient['GeneticMutations']; ?></td>
-        </tr>
-    </table>
-
-    <h2>Phenotypes</h2>
-    <table>
-        <tr>
-            <th>Phenotype ID</th>
-            <th>Description</th>
-            <th>Date Recorded</th>
-        </tr>
-        <?php while ($row = $phenotype_result->fetch_assoc()): ?>
+        <h2>General Information</h2>
+        <table>
             <tr>
-                <td><?php echo $row['PhenotypeID']; ?></td>
-                <td><?php echo $row['Description']; ?></td>
-                <td><?php echo $row['DateRecorded']; ?></td>
+                <th>Patient ID</th>
+                <td><?php echo $patient['PatientID']; ?></td>
             </tr>
-        <?php endwhile; ?>
-    </table>
-
-    <h2>Mutations</h2>
-    <table>
-        <tr>
-            <th>Mutation ID</th>
-            <th>Gene Involved</th>
-            <th>Mutation Type</th>
-            <th>Impact on Health</th>
-        </tr>
-        <?php while ($row = $mutation_result->fetch_assoc()): ?>
             <tr>
-                <td><?php echo $row['MutationID']; ?></td>
-                <td><?php echo $row['GeneInvolved']; ?></td>
-                <td><?php echo $row['MutationType']; ?></td>
-                <td><?php echo $row['ImpactOnHealth']; ?></td>
+                <th>Name</th>
+                <td><?php echo $patient['Name']; ?></td>
             </tr>
-        <?php endwhile; ?>
-    </table>
-
-    <h2>Diagnostics</h2>
-    <table>
-        <tr>
-            <th>Diagnosis ID</th>
-            <th>Diagnosis Type</th>
-            <th>Date of Diagnosis</th>
-        </tr>
-        <?php while ($row = $diagnostic_result->fetch_assoc()): ?>
             <tr>
-                <td><?php echo $row['DiagnosisID']; ?></td>
-                <td><?php echo $row['DiagnosisType']; ?></td>
-                <td><?php echo $row['DateOfDiagnosis']; ?></td>
+                <th>Date of Birth</th>
+                <td><?php echo $patient['DOB']; ?></td>
             </tr>
-        <?php endwhile; ?>
-    </table>
-    <!-- Link back to Dashboard -->
+            <tr>
+                <th>Sex</th>
+                <td><?php echo $patient['Sex']; ?></td>
+            </tr>
+            <tr>
+                <th>Phone Number</th>
+                <td><?php echo $patient['PhoneNumber']; ?></td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td><?php echo $patient['Address']; ?></td>
+            </tr>
+            <tr>
+                <th>Diagnostic Information</th>
+                <td><?php echo $patient['DiagnosticInformation']; ?></td>
+            </tr>
+            <tr>
+                <th>Genetic Mutations</th>
+                <td><?php echo $patient['GeneticMutations']; ?></td>
+            </tr>
+        </table>
+
+        <h2>Phenotypes</h2>
+        <table>
+            <tr>
+                <th>Phenotype ID</th>
+                <th>Description</th>
+                <th>Date Recorded</th>
+            </tr>
+            <?php while ($row = $phenotype_result->fetch_assoc()): ?>
+                <tr>
+                    <td><?php echo $row['PhenotypeID']; ?></td>
+                    <td><?php echo $row['Description']; ?></td>
+                    <td><?php echo $row['DateRecorded']; ?></td>
+                </tr>
+            <?php endwhile; ?>
+        </table>
+
+        <h2>Mutations</h2>
+        <table>
+            <tr>
+                <th>Mutation ID</th>
+                <th>Gene Involved</th>
+                <th>Mutation Type</th>
+                <th>Impact on Health</th>
+            </tr>
+            <?php while ($row = $mutation_result->fetch_assoc()): ?>
+                <tr>
+                    <td><?php echo $row['MutationID']; ?></td>
+                    <td><?php echo $row['GeneInvolved']; ?></td>
+                    <td><?php echo $row['MutationType']; ?></td>
+                    <td><?php echo $row['ImpactOnHealth']; ?></td>
+                </tr>
+            <?php endwhile; ?>
+        </table>
+
+        <h2>Diagnostics</h2>
+        <table>
+            <tr>
+                <th>Diagnosis ID</th>
+                <th>Diagnosis Type</th>
+                <th>Date of Diagnosis</th>
+            </tr>
+            <?php while ($row = $diagnostic_result->fetch_assoc()): ?>
+                <tr>
+                    <td><?php echo $row['DiagnosisID']; ?></td>
+                    <td><?php echo $row['DiagnosisType']; ?></td>
+                    <td><?php echo $row['DateOfDiagnosis']; ?></td>
+                </tr>
+            <?php endwhile; ?>
+        </table>
+        <!-- Link back to Dashboard -->
     </form>
 </body>
 

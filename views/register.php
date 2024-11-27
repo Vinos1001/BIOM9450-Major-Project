@@ -78,7 +78,7 @@ $conn->close();
 <html>
 
 <head>
-    <link rel="stylesheet" href="/assets/css/register.css">
+    <link rel="stylesheet" href="../assets/css/register.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
     <title>Register</title>
     <script>
@@ -141,7 +141,7 @@ $conn->close();
             const specialty = document.getElementById('specialty').value;
             const errorField = document.getElementById('specialtyError');
             const specialtyPattern = /^[a-zA-Z\s]+$/; // Allows letters and spaces only
-            
+
             if (specialty.length === 0) {
                 errorField.textContent = "";
                 return true;
@@ -174,48 +174,50 @@ $conn->close();
 
 <body>
     <div class="main">
-    <form action="register.php" method="post" onsubmit="return validateForm();">
-        <div class="registerBox">
-            <div class="login-header">
-                <h1 aria-hidden="true" style="color: white;">Register
-                    <img src="/includes/Logo.png" style="width: 62px; height: 50px; margin-top: 10px;"></h1>
-            </div>  
-            <div class="form-row">
-                <p>Your Name:</p>
-                <input type="text" id="name" name="name" oninput="validateName(this)" required />
-            </div>
-            <div id="nameError" class="form-error"></div>
+        <form action="register.php" method="post" onsubmit="return validateForm();">
+            <div class="registerBox">
+                <div class="login-header">
+                    <h1 aria-hidden="true" style="color: white;">Register
+                        <img src="../includes/Logo.png" style="width: 62px; height: 50px; margin-top: 10px;">
+                    </h1>
+                </div>
+                <div class="form-row">
+                    <p>Your Name:</p>
+                    <input type="text" id="name" name="name" oninput="validateName(this)" required />
+                </div>
+                <div id="nameError" class="form-error"></div>
 
-            <div class="form-row">
-                <p>Username:</p>
-                <input type="text" id="username" name="username" oninput="validateName(this)" required />
-            </div>
-            <div id="usernameError" class="form-error"></div>
+                <div class="form-row">
+                    <p>Username:</p>
+                    <input type="text" id="username" name="username" oninput="validateName(this)" required />
+                </div>
+                <div id="usernameError" class="form-error"></div>
 
-            <div class="form-row">
-                <p>Password:</p>
-                <input type="password" id="password" name="password" oninput="validatePassword(this)" required />
-            </div>
-            <div id="passwordError" class="form-error"></div>
+                <div class="form-row">
+                    <p>Password:</p>
+                    <input type="password" id="password" name="password" oninput="validatePassword(this)" required />
+                </div>
+                <div id="passwordError" class="form-error"></div>
 
-            <div class="form-row">
-                <p>Confirm Password:</p>
-                <input type="password" id="confirmPassword" name="confirmPassword" oninput="validateConfirmPassword()" required />
-            </div>
-            <div id="confirmPasswordError" class="form-error"></div>
+                <div class="form-row">
+                    <p>Confirm Password:</p>
+                    <input type="password" id="confirmPassword" name="confirmPassword"
+                        oninput="validateConfirmPassword()" required />
+                </div>
+                <div id="confirmPasswordError" class="form-error"></div>
 
-            <div class="form-row">
-                <p>Specialty:</p>
-                <input type="text" id="specialty" name="specialty" oninput="validateSpecialty(this)" required />
-            </div>
-            <div id="specialtyError" class="form-error"></div>
+                <div class="form-row">
+                    <p>Specialty:</p>
+                    <input type="text" id="specialty" name="specialty" oninput="validateSpecialty(this)" required />
+                </div>
+                <div id="specialtyError" class="form-error"></div>
 
-            <button type="submit">Register</button>
-            <a href="login.php" style="text-decoration: none; font-size: 12px;">
-                <button type="button">Already have an account?</button>
-            </a>
-        </div>
-    </form>
+                <button type="submit">Register</button>
+                <a href="login.php" style="text-decoration: none; font-size: 12px;">
+                    <button type="button">Already have an account?</button>
+                </a>
+            </div>
+        </form>
     </div>
 </body>
 
