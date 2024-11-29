@@ -2,6 +2,8 @@
 require_once('../TCPDF-main/tcpdf.php'); // Adjust the path to your TCPDF installation
 
 include('log_action.php');
+include('log_reports.php');
+
 // Start the session
 session_start();
 
@@ -103,6 +105,12 @@ $pdf->writeHTML($html, true, false, true, false, '');
 $clinician_id = $_SESSION['clinician_id'];
 $action = "Generated all patients PDF";
 log_action($conn, $clinician_id, $action, null, "Generated PDF for all patients");
+
+// Prepare a summary or identifier for the report
+$report_content = "PDF generated for all patients.";
+
+// Log the report into the Reports table
+log_report($conn, 'General', $report_content);
 
 // close and output PDF document
 $pdf->Output('all_patients_report.pdf', 'I');

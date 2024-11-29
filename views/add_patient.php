@@ -53,25 +53,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         log_action($conn, $clinician_id, $action, $patient_id, "Added patient ID $patient_id");
 
         // Insert data into the Phenotypes table
-        $query = "INSERT INTO Phenotypes (Description, PatientID, DateRecorded)
-                  VALUES (?, ?, ?)";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("sis", $phenotype_description, $patient_id, $phenotype_date);
-        $stmt->execute();
+        if (!empty($phenotype_description) && !empty($phenotype_date)) {
+            $query = "INSERT INTO Phenotypes (Description, PatientID, DateRecorded)
+              VALUES (?, ?, ?)";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("sis", $phenotype_description, $patient_id, $phenotype_date);
+            $stmt->execute();
+
+            // Add to Category table as 'Phenotypes'
+            $category_type = 'Phenotypes';
+            $query = "INSERT INTO Category (CategoryType, PatientID) VALUES (?, ?)";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("si", $category_type, $patient_id);
+            $stmt->execute();
+        }
 
         // Insert data into the Mutations table
-        $query = "INSERT INTO Mutations (GeneInvolved, MutationType, ImpactOnHealth, PatientID)
-                  VALUES (?, ?, ?, ?)";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("sssi", $mutation_gene, $mutation_type, $impact_on_health, $patient_id);
-        $stmt->execute();
+        if (!empty($mutation_gene) && !empty($mutation_type) && !empty($impact_on_health)) {
+            $query = "INSERT INTO Mutations (GeneInvolved, MutationType, ImpactOnHealth, PatientID)
+              VALUES (?, ?, ?, ?)";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("sssi", $mutation_gene, $mutation_type, $impact_on_health, $patient_id);
+            $stmt->execute();
+
+            // Add to Category table as 'Mutations'
+            $category_type = 'Mutations';
+            $query = "INSERT INTO Category (CategoryType, PatientID) VALUES (?, ?)";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("si", $category_type, $patient_id);
+            $stmt->execute();
+        }
 
         // Insert data into the Diagnostics table
-        $query = "INSERT INTO Diagnostics (DiagnosisType, DateOfDiagnosis, PatientID)
-                  VALUES (?, ?, ?)";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("ssi", $diagnosis_type, $date_of_diagnosis, $patient_id);
-        $stmt->execute();
+        if (!empty($diagnosis_type) && !empty($date_of_diagnosis)) {
+            $query = "INSERT INTO Diagnostics (DiagnosisType, DateOfDiagnosis, PatientID)
+              VALUES (?, ?, ?)";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("ssi", $diagnosis_type, $date_of_diagnosis, $patient_id);
+            $stmt->execute();
+
+            // Add to Category table as 'Diagnostics'
+            $category_type = 'Diagnostics';
+            $query = "INSERT INTO Category (CategoryType, PatientID) VALUES (?, ?)";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("si", $category_type, $patient_id);
+            $stmt->execute();
+        }
+
 
         $success = "Patient added successfully!";
     } else {
@@ -133,13 +161,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <textarea id="diagnostics_info" name="diagnostics_info" required></textarea><br><br>
 
         <label for="genetic_mutations">Genetic Mutations:</label>
-        <textarea id="genetic_mutations" name="genetic_mutations"></textarea><br><br>
+        <textarea id="genetic_mutations" name="genetic_mutations" required></textarea><br><br>
 
         <label for="phenotype_description">Phenotype Description:</label>
-        <input type="text" id="phenotype_description" name="phenotype_description"><br><br>
+        <input type="text" id="phenotype_description" name="phenotype_description" required><br><br>
 
         <label for="phenotype_date">Phenotype Date (YYYY-MM-DD):</label>
-        <input type="date" id="phenotype_date" name="phenotype_date"><br><br>
+        <input type="date" id="phenotype_date" name="phenotype_date" required><br><br>
 
         <label for="mutation_gene">Mutation Gene:</label>
         <input type="text" id="mutation_gene" name="mutation_gene"><br><br>
@@ -148,13 +176,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" id="mutation_type" name="mutation_type"><br><br>
 
         <label for="impact_on_health">Impact on Health:</label>
-        <textarea id="impact_on_health" name="impact_on_health" required></textarea><br><br>
+        <textarea id="impact_on_health" name="impact_on_health"></textarea><br><br>
 
         <label for="diagnosis_type">Diagnosis Type:</label>
-        <input type="text" id="diagnosis_type" name="diagnosis_type" required><br><br>
+        <input type="text" id="diagnosis_type" name="diagnosis_type"><br><br>
 
         <label for="date_of_diagnosis">Date of Diagnosis (YYYY-MM-DD):</label>
-        <input type="date" id="date_of_diagnosis" name="date_of_diagnosis" required><br><br>
+        <input type="date" id="date_of_diagnosis" name="date_of_diagnosis"><br><br>
 
         <button type="submit">Submit</button>
     </form>

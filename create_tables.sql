@@ -48,3 +48,20 @@ CREATE TABLE AuditLog (
     FOREIGN KEY (ClinicianID) REFERENCES Clinician(ClinicianID),
     FOREIGN KEY (PatientID) REFERENCES Patient(PatientID)
 );
+
+CREATE TABLE Reports (
+    ReportID INT PRIMARY KEY AUTO_INCREMENT,
+    ReportType ENUM('Individual', 'General') NOT NULL,
+    Content TEXT NOT NULL,
+    PatientID INT DEFAULT NULL,
+    DateCreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (PatientID) REFERENCES Patient(PatientID)
+);
+
+CREATE TABLE Category (
+    CategoryID INT PRIMARY KEY AUTO_INCREMENT,
+    CategoryType ENUM('Diagnostics', 'Phenotypes', 'Mutations') NOT NULL,
+    PatientID INT NOT NULL,
+    FOREIGN KEY (PatientID) REFERENCES Patient(PatientID)
+);
+

@@ -47,7 +47,7 @@ log_action($conn, $clinician_id, $action, $patient_id, "Viewed details of patien
 <html>
 
 <head>
-    <link rel="stylesheet" href="/assets/css/view_patient.css">
+    <link rel="stylesheet" href="../assets/css/view_patient.css">
     <title>Patient Details</title>
 </head>
 
