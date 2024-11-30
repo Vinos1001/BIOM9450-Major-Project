@@ -12,7 +12,7 @@
 }
 
 #dashboard-filter-container {
-    height: 40px;
+    height: 4   0px;
 }
 
 #dashboard-filter-container h2 {
@@ -32,7 +32,6 @@
 
 #dashboard-filter select {
     width: 20%;
-    height: 100%;
     border: solid 1px #ccc;
     border-radius: 4px;
     box-sizing: border-box;
@@ -41,7 +40,6 @@
 
 #dashboard-filter .searchbar {
     width: 20%;
-    height: 100%;
     padding: 0px;
     box-sizing: border-box; 
     min-width: 150px;
