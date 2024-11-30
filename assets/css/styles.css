@@ -63,6 +63,7 @@ form {
     grid-gap: 10px;
     max-width: 400px;
     margin: 0 auto;
+    font-family: 'Trebuchet MS', sans-serif;
 }
 
 label {
@@ -74,19 +75,22 @@ input[type="text"], input[type="email"] {
     border: 1px solid #ccc;
     border-radius: 4px;
     width: 100%;
+    font-family: 'Trebuchet MS', sans-serif;
+
 }
 
 input[type="submit"] {
-    background-color: #4caf7f;
+    background-color: #5bc4ab;
     color: white;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 4px;
+    font-family: 'Trebuchet MS', sans-serif;
 }
 
 input[type="submit"]:hover {
-    background-color: #4c7daf;
+    background-color: #80d4c0;
 }
 
 
@@ -172,6 +176,12 @@ nav a {
 
 .navbar-button {
     height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+    padding: 0 10px;
 }
 
 .navbar-button:hover {
@@ -228,13 +238,13 @@ button, .btn {
 }
 
 button:hover, .btn:hover {
-    background-color: #3e9c6b; /* Darker hover color */
+    background-color: #80d4c0; /* Darker hover color */
     transform: translateY(-2px); /* Slight lift effect */
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow */
 }
 
-button:active, .btn:active {
-    background-color: #36875f; /* Slightly darker for active state */
+    button:active, .btn:active {
+    background-color: #5bc4ab; /* Slightly darker for active state */
     transform: translateY(0); /* Reset lift effect */
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Reduce shadow */
 }

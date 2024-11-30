@@ -37,6 +37,8 @@
     box-sizing: border-box;
     color: #333;
     min-width: 150px;
+    font-family: 'Trebuchet MS', sans-serif;
+
 }
 
 #dashboard-filter .searchbar {
@@ -52,6 +54,8 @@
     font-size: 90%;
     height: 100%;
     width: 100%;
+    font-weight: bold;
+    color: #5bc4ab;
 }
 
 #dashboard-filter-end-buttons {
