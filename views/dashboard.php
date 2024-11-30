@@ -106,11 +106,10 @@ $result = $conn->query($search_query);
                 <!-- Add button to generate PDF -->
                 <a
                     href="generate_all_patients_pdf.php?search_criteria=<?php echo $search_criteria; ?>&search_value=<?php echo $search_value; ?>">
-                    <button type="button">Save All as PDF
-                    </button>
+                    <button type="button">Save All as PDF</button>
                 </a>
                 <a href="add_patient.php" style="color:#4caf7f;">
-                    <button>
+                    <button type ="button">
                         Add Patient
                     </button>
                 </a>
