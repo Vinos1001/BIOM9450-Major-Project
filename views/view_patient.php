@@ -55,6 +55,8 @@ log_action($conn, $clinician_id, $action, $patient_id, "Viewed details of patien
     <?php include("../includes/header.php"); ?>
 
     <br>
+    <br>
+    <br>
     <h1>Patient Details</h1>
 
     <!-- Patient profile image -->

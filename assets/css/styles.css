@@ -127,7 +127,6 @@ input[type="submit"]:hover {
 }
 
 .welcome-box h1 {
-    font-size: 28px;
     color: #5bc4ab;
     margin-bottom: 10px;
 }
@@ -190,8 +189,10 @@ nav a {
 }
 
 .logged-in-info {
-    margin-left: 60%; /* This pushes the "Logged in as" section to the right */
+    display: flex;
+    margin-left: auto; /* This pushes the "Logged in as" section to the right */
     text-align: right; /* Optional: aligns the text to the right */
+    min-width: 200px;
 }
 
 .footer { 

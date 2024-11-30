@@ -12,6 +12,6 @@
     <div class='navbar-button' onclick="buttonNav('about.php')">About Us</div>
     <div class="logged-in-info">
         <a>Logged in as <strong><?php echo htmlspecialchars($username); ?></strong></a>
+        <div class='navbar-button' onclick="buttonNav('logout.php')"><i class="fas fa-sign-out-alt"></i> Logout</div>
     </div>
-    <div class='navbar-button navbar-last'><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></div>
 </nav>

@@ -1,0 +1,17 @@
+.container {
+    background: none;
+    background-image: linear-gradient(to bottom right, #569a6e74,#4a6881a7,#2b3e7696); 
+
+    max-width: 70%;
+}
+
+body {
+    background-image: url("/includes/about.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+h1 {
+    color: white;
+}

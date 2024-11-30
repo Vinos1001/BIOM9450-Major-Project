@@ -176,9 +176,13 @@ nav a {
 }
 
 .logged-in-info {
-    margin-left: 60%; /* This pushes the "Logged in as" section to the right */
+    display: flex;
+    margin-left: auto; /* This pushes the "Logged in as" section to the right */
     text-align: right; /* Optional: aligns the text to the right */
+    min-width: 200px;
+    height: 100%;
 }
+
 
 .footer { 
     position: absolute bottom; 

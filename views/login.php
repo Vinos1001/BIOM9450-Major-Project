@@ -92,17 +92,13 @@ $conn->close();
                 <input type="text" name="username" placeholder="Username" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <button type="submit">Login</button>
+                <a href="register.php" style="text-decoration: none;">
+                <button type="button">Register</button>
+            </a>
                 <br><br>
                 <a href="register.php" style="display: block; padding-left: 112px; color: white; size:2px;">Forgot
                     password?</a>
             </form>
-        </div>
-
-        <!-- Register button -->
-        <div class="login">
-            <a href="register.php" style="text-decoration: none;">
-                <button type="button">Register</button>
-            </a>
         </div>
 
 
