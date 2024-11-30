@@ -84,7 +84,7 @@ $result = $conn->query($search_query);
                     echo 'selected'; ?>>Name</option>
                 <option value="dob" <?php if ($search_criteria == 'dob')
                     echo 'selected'; ?>>Date of Birth</option>
-                <option value="sex" <?php if ($search_criteadria == 'sex')
+                <option value="sex" <?php if ($search_criteria == 'sex')
                     echo 'selected'; ?>>Sex</option>
                 <option value="phone_number" <?php if ($search_criteria == 'phone_number')
                     echo 'selected'; ?>>Phone
