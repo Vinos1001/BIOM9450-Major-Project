@@ -8,6 +8,7 @@
 body {
     font-family: 'Trebuchet MS', sans-serif;
     color: #333; /* Text color */
+    font-size: 21px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,6 +57,7 @@ textarea {
     border: 1px solid #ffffff65;
     border-radius: 4px;
     font-size: 16px;
+    color: #333;
 }
 
 /* Focus state for inputs */
@@ -96,7 +98,7 @@ button {
     display: block;
     color: #3f5a75;
     background: white;
-    font-size: 1em;
+    font-size: 16px;
     font-weight: bold;
     margin-top: 20px;
     outline: none;

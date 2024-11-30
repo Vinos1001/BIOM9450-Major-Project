@@ -56,7 +56,8 @@ $result = $conn->query($search_query);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Page</title>
-    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/dashboard.css">
 </head>
 
 <body>
@@ -73,9 +74,11 @@ $result = $conn->query($search_query);
 
 
     <!-- Filter Box -->
-    <div class="form-container">
-        <h2>Filter Fields</h2>
-        <form method="POST" action="dashboard.php">
+    <div id="dashboard-filter-container" class="form-container">
+        <div id="dashboard-filter-header">
+            <h2>Filter Fields:</h2>
+        </div>
+        <form id="dashboard-filter" method="POST" action="dashboard.php">
             <select name="search_criteria">
                 <option value="name" <?php if ($search_criteria == 'name')
                     echo 'selected'; ?>>Name</option>
@@ -94,24 +97,25 @@ $result = $conn->query($search_query);
                     echo 'selected'; ?>>
                     Genetic Mutations</option>
             </select>
-            <input type="text" name="search_value" value="<?php echo $search_value; ?>" placeholder="Search..."
+            <input class="searchbar" type="text" name="search_value" value="<?php echo $search_value; ?>" placeholder="Search..."
                 required />
             <input type="submit" value="Search" />
-            <!-- Reset Button -->
-            <a href="dashboard.php"><button type="button" class="reset-btn">Reset Filter</button></a>
-            <!-- Add button to generate PDF -->
-            <a
-                href="generate_all_patients_pdf.php?search_criteria=<?php echo $search_criteria; ?>&search_value=<?php echo $search_value; ?>">
-                <button type="button">Save All as PDF
-                </button>
-            </a>
-            <div class="button-container">
-                <button>
-                    <a href="add_patient.php" style="color:#4caf7f;">Add Patient</a>
-                    &nbsp;
-                </button>
+            <div id="dashboard-filter-end-buttons" >
+                <!-- Reset Button -->
+                <a href="dashboard.php"><button type="button" class="reset-btn">Reset Filter</button></a>
+                <!-- Add button to generate PDF -->
+                <a
+                    href="generate_all_patients_pdf.php?search_criteria=<?php echo $search_criteria; ?>&search_value=<?php echo $search_value; ?>">
+                    <button type="button">Save All as PDF
+                    </button>
+                </a>
+                <a href="add_patient.php" style="color:#4caf7f;">
+                    <button>
+                        Add Patient
+                    </button>
+                </a>
+            </div>
         </form>
-    </div>
     </div>
 
 

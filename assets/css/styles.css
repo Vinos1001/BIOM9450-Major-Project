@@ -107,14 +107,6 @@ input[type="submit"]:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
 }
-.form-container {
-    max-width: 80%;
-    margin: auto;
-    padding: 20px;
-    background: #02000016;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
-}
 .table-container {
     max-width: 80%;
     margin: 50px auto;

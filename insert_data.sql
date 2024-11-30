@@ -1,3 +1,5 @@
+USE patient_management_system;
+
 INSERT INTO Patient (
         Name,
         DOB,
