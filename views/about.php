@@ -55,7 +55,7 @@ $username = $_SESSION['username'];
         <h2>Get in Touch</h2>
         <p>
             If you'd like to learn more about DIAGNOSYS or how it can enhance your practice, feel free to contact us at 
-            <a href="mailto:support@diagnosys.com">support@diagnosys.com</a>.
+            <a href="mailto:support@diagnosys.com" style="color: #ffffff">support@diagnosys.com</a>.
         </p>
     </div>
 
